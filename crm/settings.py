@@ -89,3 +89,9 @@ STATICFILES_DIRS = [
 ]
 # Add this line: This is where Django will collect everything for Render
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
