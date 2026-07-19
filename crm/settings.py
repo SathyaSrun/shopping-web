@@ -42,7 +42,7 @@ ROOT_URLCONF = 'crm.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'fashi'],  # Points Django to your fashi HTML files
+        'DIRS': [BASE_DIR / 'templates'],  # Points Django to your fashi HTML files
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,7 +84,7 @@ STATIC_URL = 'static/'
 
 # Tells Django where to look for CSS, JS, and image folders inside fashi
 STATICFILES_DIRS = [
-    BASE_DIR / 'fashi',
+    BASE_DIR / 'static',
 ]
 # Add this line: This is where Django will collect everything for Render
 STATIC_ROOT = BASE_DIR / 'staticfiles'
