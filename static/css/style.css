@@ -275,6 +275,10 @@ ol {
 	position: relative;
 }
 
+.ht-right .lan-selector .language_drop {
+	width: 300px;
+}
+
 .ht-right .lan-selector .ddcommon {
 	max-width: 142px;
 	-webkit-box-shadow: none !important;

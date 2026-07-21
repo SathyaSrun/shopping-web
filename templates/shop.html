@@ -1,11 +1,11 @@
-{% load static 
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="shop">
-    <meta name="keywords" content="Fashi, unica, creative, html %}">
+    <meta name="keywords" content="Fashi, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>shop</title>
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="{% static  'css/themify-icons.css' }" type="text/css">
     <link rel="stylesheet" href="{% static  'css/elegant-icons.css' }" type="text/css">
     <link rel="stylesheet" href="{% static  'css/owl.carousel.min.css' }" type="text/css">
-    <link rel="stylesheet" href="{% static  'css/nice-select.css' }" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static  'css/jquery-ui.min.css' }" type="text/css">
     <link rel="stylesheet" href="{% static  'css/slicknav.min.css' }" type="text/css">
     <link rel="stylesheet" href="{% static  'css/style.css' %}}" type="text/css">
@@ -48,11 +48,12 @@
                 <div class="ht-right">
                     <a href="{% static # %}" class="login-panel"><i class="fa fa-user"></i>Login</a>
                     <div class="lan-selector">
-                        <select class="language_drop" name="countries" id="countries" style="width:300px;">
-                            <option value='yt' data-image="img/flag-1.jpg" data-imagecss="flag yt"
+                        <label for="language" class="sr-only">Select language</label>
+                        <select class="language_drop" name="language" id="language">
+                            <option value="en" data-image="{% static 'img/flag-1.jpg' %}" data-imagecss="flag en"
                                 data-title="English">English</option>
-                            <option value='yu' data-image="img/flag-2.jpg" data-imagecss="flag yu"
-                                data-title="Bangladesh">German </option>
+                            <option value="de" data-image="{% static 'img/flag-2.jpg' %}" data-imagecss="flag de"
+                                data-title="German">German</option>
                         </select>
                     </div>
                     <div class="top-social">
@@ -707,7 +708,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src=" 'js/bootstrap.min.js' "></script>
     <script src=" 'js/jquery-ui.min.js' "></script>
     <script src=" 'js/jquery.countdown.min.js' "></script>
-    <script src=" 'js/jquery.nice-select.min.js' "></script>
+    <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
     <script src=" 'js/jquery.zoom.min.js' "></script>
     <script src=" 'js/jquery.dd.min.js' "></script>
     <script src=" 'js/jquery.slicknav.js' "></script>

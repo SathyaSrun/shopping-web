@@ -51,13 +51,12 @@
                 <div class="ht-right">
                     <a href="{% url 'login' %}" class="login-panel"><i class="fa fa-user"></i>Login</a>
                     <div class="lan-selector">
-                        <select class="language_drop" name="countries" id="countries" style="width:300px;">
-                            <option value='yt' data-image="{% static 'img/flag-1.jpg' %}" data-imagecss="flag yt"
+                        <label for="language" class="sr-only">Select language</label>
+                        <select class="language_drop" name="language" id="language">
+                            <option value="en" data-image="{% static 'img/flag-1.jpg' %}" data-imagecss="flag en"
                                 data-title="English">English</option>
-                            <option value='yu' data-image="{% static 'img/flag-2.jpg' %}" data-imagecss="flag yu"
-                                data-title="German">
-                                German
-                            </option>
+                            <option value="de" data-image="{% static 'img/flag-2.jpg' %}" data-imagecss="flag de"
+                                data-title="German">German</option>
                         </select>
                     </div>
                     <div class="top-social">
