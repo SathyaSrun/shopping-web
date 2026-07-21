@@ -94,3 +94,21 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+
+
+USE_I18N = True
+
+LANGUAGE_CODE = 'en'
+
+LANGUAGES = [
+    ('en', 'English'),
+    ('km', 'Khmer'),
+    ('de', 'German'),
+    ('fr', 'French'),
+    ('ja', 'Japanese'),
+    ('zh-hans', 'Chinese'),
+]
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]

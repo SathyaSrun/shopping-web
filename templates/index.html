@@ -50,101 +50,24 @@
                 </div>
                 <div class="ht-right">
                     <a href="{% url 'login' %}" class="login-panel"><i class="fa fa-user"></i>Login</a>
+                    <div class="lan-selector">
+                        {% load i18n %}
 
+                        <form action="{% url 'set_language' %}" method="post">
+                            {% csrf_token %}
 
-                    <!-- Google Translate -->
-                    <div class="language-wrapper">
-                        <div class="language-header">
-                            <i class="fa-solid fa-earth-americas"></i>
-                            <span>Language</span>
-                        </div>
+                            <select name="language" onchange="this.form.submit()">
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% get_available_languages as LANGUAGES %}
 
-                        <div id="google_translate_element"></div>
+                                {% for lang in LANGUAGES %}
+                                <option value="{{ lang.0 }}" {% if lang.0==LANGUAGE_CODE %}selected{% endif %}>
+                                    {{ lang.1 }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </form>
                     </div>
-
-                    <style>
-                        .language-wrapper {
-                            display: flex;
-                            align-items: center;
-                            gap: 12px;
-                            background: #ffffff;
-                            border: 1px solid #e6e6e6;
-                            border-radius: 50px;
-                            padding: 8px 18px;
-                            box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
-                            transition: .3s;
-                            width: fit-content;
-                            font-family: 'Poppins', sans-serif;
-                        }
-
-                        .language-wrapper:hover {
-                            transform: translateY(-2px);
-                            box-shadow: 0 12px 25px rgba(0, 0, 0, .15);
-                        }
-
-                        .language-header {
-                            display: flex;
-                            align-items: center;
-                            gap: 8px;
-                            font-weight: 600;
-                            color: #222;
-                        }
-
-                        .language-header i {
-                            color: #ff6a00;
-                            font-size: 18px;
-                        }
-
-                        /* Hide Google branding */
-                        .goog-logo-link,
-                        .goog-te-gadget span {
-                            display: none !important;
-                        }
-
-                        .goog-te-gadget {
-                            color: transparent !important;
-                            font-size: 0 !important;
-                        }
-
-                        .goog-te-combo {
-                            border: none !important;
-                            background: transparent !important;
-                            outline: none !important;
-                            font-size: 15px !important;
-                            font-weight: 500;
-                            cursor: pointer;
-                            color: #333 !important;
-                            padding: 4px;
-                        }
-
-                        .goog-te-combo:hover {
-                            color: #ff6a00 !important;
-                        }
-
-                        .goog-te-banner-frame.skiptranslate {
-                            display: none !important;
-                        }
-
-                        body {
-                            top: 0 !important;
-                        }
-                    </style>
-
-                    <script>
-                        function googleTranslateElementInit() {
-                            new google.translate.TranslateElement({
-                                pageLanguage: 'en',
-                                includedLanguages: 'en,km,zh-CN,ja,ko,th,vi,ms,id,tl,hi,bn,ar,tr,ru,de,fr,es,it,pt,nl,sv,pl,uk,el',
-                                autoDisplay: false,
-                                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-                            }, 'google_translate_element');
-                        }
-                    </script>
-
-                    <script
-                        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-                    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
                     <div class="top-social">
                         <a href="#"><i class="ti-facebook"></i></a>
                         <a href="#"><i class="ti-twitter-alt"></i></a>
