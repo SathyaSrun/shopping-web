@@ -51,34 +51,20 @@
                 <div class="ht-right">
                     <a href="{% url 'login' %}" class="login-panel"><i class="fa fa-user"></i>Login</a>
                     <div class="lan-selector">
-                        <select class="language_drop" name="countries" id="countries" style="width:300px;">
-                            <option value="en" data-title="English">🇺🇸 English</option>
-                            <option value="km" data-title="Khmer">🇰🇭 Khmer</option>
-                            <option value="zh" data-title="Chinese">🇨🇳 Chinese</option>
-                            <option value="ja" data-title="Japanese">🇯🇵 Japanese</option>
-                            <option value="ko" data-title="Korean">🇰🇷 Korean</option>
-                            <option value="th" data-title="Thai">🇹🇭 Thai</option>
-                            <option value="vi" data-title="Vietnamese">🇻🇳 Vietnamese</option>
-                            <option value="ms" data-title="Malay">🇲🇾 Malay</option>
-                            <option value="id" data-title="Indonesian">🇮🇩 Indonesian</option>
-                            <option value="tl" data-title="Filipino">🇵🇭 Filipino</option>
-                            <option value="hi" data-title="Hindi">🇮🇳 Hindi</option>
-                            <option value="bn" data-title="Bengali">🇧🇩 Bengali</option>
-                            <option value="ar" data-title="Arabic">🇸🇦 Arabic</option>
-                            <option value="tr" data-title="Turkish">🇹🇷 Turkish</option>
-                            <option value="ru" data-title="Russian">🇷🇺 Russian</option>
-                            <option value="de" data-title="German">🇩🇪 German</option>
-                            <option value="fr" data-title="French">🇫🇷 French</option>
-                            <option value="es" data-title="Spanish">🇪🇸 Spanish</option>
-                            <option value="it" data-title="Italian">🇮🇹 Italian</option>
-                            <option value="pt" data-title="Portuguese">🇵🇹 Portuguese</option>
-                            <option value="nl" data-title="Dutch">🇳🇱 Dutch</option>
-                            <option value="sv" data-title="Swedish">🇸🇪 Swedish</option>
-                            <option value="pl" data-title="Polish">🇵🇱 Polish</option>
-                            <option value="uk" data-title="Ukrainian">🇺🇦 Ukrainian</option>
-                            <option value="el" data-title="Greek">🇬🇷 Greek</option>
-                        </select>
+                        <div id="google_translate_element"></div>
                     </div>
+
+                    <script>
+                        function googleTranslateElementInit() {
+                            new google.translate.TranslateElement({
+                                pageLanguage: 'en',
+                                includedLanguages: 'en,km,zh-CN,ja,ko,th,vi,ms,id,tl,hi,bn,ar,tr,ru,de,fr,es,it,pt,nl,sv,pl,uk,el',
+                                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                            }, 'google_translate_element');
+                        }
+                    </script>
+
+                    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
                     <div class="top-social">
                         <a href="#"><i class="ti-facebook"></i></a>
                         <a href="#"><i class="ti-twitter-alt"></i></a>
