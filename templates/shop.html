@@ -167,25 +167,25 @@
                 </div>
                 <nav class="nav-menu mobile-menu">
                     <ul>
-                        <li><a href="{% urls './index.html' %}">{% trans "Home" %}</a></li>
-                        <li><a href="{% urls './shop.html' %}">{% trans "Shop" %}</a></li>
-                        <li><a href="{% urls # %}">{% trans "Collection" %}</a>
+                        <li><a href="{% url './index.html' %}">{% trans "Home" %}</a></li>
+                        <li><a href="{% url './shop.html' %}">{% trans "Shop" %}</a></li>
+                        <li><a href="{% url # %}">{% trans "Collection" %}</a>
                             <ul class="dropdown">
-                                <li><a href="{% urls # %}">{% trans "Men's" %}</a></li>
-                                <li><a href="{% urls # %}">{% trans "Women's" %}</a></li>
-                                <li><a href="{% urls # %}">{% trans "Kid's" %}</a></li>
+                                <li><a href="{% url # %}">{% trans "Men's" %}</a></li>
+                                <li><a href="{% url # %}">{% trans "Women's" %}</a></li>
+                                <li><a href="{% url # %}">{% trans "Kid's" %}</a></li>
                             </ul>
                         </li>
-                        <li><a href="{% urls './blog.html' %}">{% trans "Blog" %}</a></li>
-                        <li><a href="{% urls ./ontact.html %}">{% trans "Contact" %}</a></li>
-                        <li><a href="{% urls # }">{% trans "Pages" %}</a>
+                        <li><a href="{% url './blog.html' %}">{% trans "Blog" %}</a></li>
+                        <li><a href="{% url ./ontact.html %}">{% trans "Contact" %}</a></li>
+                        <li><a href="{% url # }">{% trans "Pages" %}</a>
                             <ul class="dropdown">
-                                <li><a href="{% urls './blog-details.html' %}">{% trans "Blog Details" %}</a></li>
-                                <li><a href="{% urls './shopping-cart.html' %}">{% trans "Shopping Cart" %}</a></li>
-                                <li><a href="{% urls './check-out.html' %}">{% trans "Checkout" %}</a></li>
-                                <li><a href="{% urls './faq.html' %}">{% trans "Faq" %}</a></li>
-                                <li><a href="{% urls './register.html' %}">{% trans "Register" %}</a></li>
-                                <li><a href="{% urls './login.html' %}">{% trans "Login" %}</a></li>
+                                <li><a href="{% url './blog-details.html' %}">{% trans "Blog Details" %}</a></li>
+                                <li><a href="{% url './shopping-cart.html' %}">{% trans "Shopping Cart" %}</a></li>
+                                <li><a href="{% url './check-out.html' %}">{% trans "Checkout" %}</a></li>
+                                <li><a href="{% url './faq.html' %}">{% trans "Faq" %}</a></li>
+                                <li><a href="{% url './register.html' %}">{% trans "Register" %}</a></li>
+                                <li><a href="{% url './login.html' %}">{% trans "Login" %}</a></li>
                             </ul>
                         </li>
                     </ul>
