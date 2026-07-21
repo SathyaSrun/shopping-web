@@ -1,4 +1,4 @@
-{% load static %}
+{% load i18n static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,15 +49,20 @@
                     </div>
                 </div>
                 <div class="ht-right">
-                    <a href="{% url 'login' %}" class="login-panel"><i class="fa fa-user"></i>Login</a>
+                    <a href="{% url 'login' %}" class="login-panel"><i class="fa fa-user"></i>{% trans "Login" %}</a>
                     <div class="lan-selector">
-                        <label for="language" class="sr-only">Select language</label>
-                        <select class="language_drop" name="language" id="language">
-                            <option value="en" data-image="{% static 'img/flag-1.jpg' %}" data-imagecss="flag en"
-                                data-title="English">English</option>
-                            <option value="de" data-image="{% static 'img/flag-2.jpg' %}" data-imagecss="flag de"
-                                data-title="German">German</option>
-                        </select>
+                        {% get_current_language as LANGUAGE_CODE %}
+                        <form action="{% url 'set_language' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="next" value="{{ request.path }}">
+                            <label for="language" class="sr-only">Select language</label>
+                            <select class="language_drop" name="language" id="language" onchange="this.form.submit()">
+                                <option value="en" data-image="{% static 'img/flag-1.jpg' %}" data-imagecss="flag en"
+                                    data-title="English" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+                                <option value="de" data-image="{% static 'img/flag-2.jpg' %}" data-imagecss="flag de"
+                                    data-title="German" {% if LANGUAGE_CODE == 'de' %}selected{% endif %}>German</option>
+                            </select>
+                        </form>
                     </div>
                     <div class="top-social">
                         <a href="#"><i class="ti-facebook"></i></a>
@@ -80,9 +85,9 @@
                     </div>
                     <div class="col-lg-7 col-md-7">
                         <div class="advanced-search">
-                            <button type="button" class="category-btn">All Categories</button>
+                            <button type="button" class="category-btn">{% trans "All Categories" %}</button>
                             <div class="input-group">
-                                <input type="text" placeholder="What do you need?">
+                                <input type="text" placeholder="{% trans "What do you need?" %}">
                                 <button type="button"><i class="ti-search"></i></button>
                             </div>
                         </div>
@@ -110,7 +115,7 @@
                                                     <td class="si-text">
                                                         <div class="product-selected">
                                                             <p>$60.00 x 1</p>
-                                                            <h6>Kabino Bedside Table</h6>
+                                                            <h6>{% trans "Kabino Bedside Table" %}</h6>
                                                         </div>
                                                     </td>
                                                     <td class="si-close">
@@ -123,7 +128,7 @@
                                                     <td class="si-text">
                                                         <div class="product-selected">
                                                             <p>$60.00 x 1</p>
-                                                            <h6>Kabino Bedside Table</h6>
+                                                            <h6>{% trans "Kabino Bedside Table" %}</h6>
                                                         </div>
                                                     </td>
                                                     <td class="si-close">
@@ -134,12 +139,12 @@
                                         </table>
                                     </div>
                                     <div class="select-total">
-                                        <span>total:</span>
+                                        <span>{% trans "total:" %}</span>
                                         <h5>$120.00</h5>
                                     </div>
                                     <div class="select-button">
-                                        <a href="{% url 'shopping-cart' %}" class="primary-btn view-card">VIEW CARD</a>
-                                        <a href="{% url 'checkout' %}" class="primary-btn checkout-btn">CHECK OUT</a>
+                                        <a href="{% url 'shopping-cart' %}" class="primary-btn view-card">{% trans "VIEW CARD" %}</a>
+                                        <a href="{% url 'checkout' %}" class="primary-btn checkout-btn">{% trans "CHECK OUT" %}</a>
                                     </div>
                                 </div>
                             </li>
@@ -156,38 +161,38 @@
                         <i class="ti-menu"></i>
                         <span>All departments</span>
                         <ul class="depart-hover">
-                            <li class="active"><a href="#">Women’s Clothing</a></li>
-                            <li><a href="#">Men’s Clothing</a></li>
-                            <li><a href="#">Underwear</a></li>
-                            <li><a href="#">Kid's Clothing</a></li>
-                            <li><a href="#">Brand Fashion</a></li>
-                            <li><a href="#">Accessories/Shoes</a></li>
-                            <li><a href="#">Luxury Brands</a></li>
-                            <li><a href="#">Brand Outdoor Apparel</a></li>
+                            <li class="active"><a href="#">{% trans "Women’s Clothing" %}</a></li>
+                            <li><a href="#">{% trans "Men’s Clothing" %}</a></li>
+                            <li><a href="#">{% trans "Underwear" %}</a></li>
+                            <li><a href="#">{% trans "Kid's Clothing" %}</a></li>
+                            <li><a href="#">{% trans "Brand Fashion" %}</a></li>
+                            <li><a href="#">{% trans "Accessories/Shoes" %}</a></li>
+                            <li><a href="#">{% trans "Luxury Brands" %}</a></li>
+                            <li><a href="#">{% trans "Brand Outdoor Apparel" %}</a></li>
                         </ul>
                     </div>
                 </div>
                 <nav class="nav-menu mobile-menu">
                     <ul>
-                        <li class="active"><a href="{% url 'home' %}">Home</a></li>
-                        <li><a href="{% url 'shop' %}">Shop</a></li>
-                        <li><a href="#">Collection</a>
+                        <li class="active"><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
+                        <li><a href="{% url 'shop' %}">{% trans "Shop" %}</a></li>
+                        <li><a href="#">{% trans "Collection" %}</a>
                             <ul class="dropdown">
-                                <li><a href="#">Men's</a></li>
-                                <li><a href="#">Women's</a></li>
-                                <li><a href="#">Kid's</a></li>
+                                <li><a href="#">{% trans "Men's" %}</a></li>
+                                <li><a href="#">{% trans "Women's" %}</a></li>
+                                <li><a href="#">{% trans "Kid's" %}</a></li>
                             </ul>
                         </li>
-                        <li><a href="{% url 'blog' %}">Blog</a></li>
-                        <li><a href="{% url 'contact' %}">Contact</a></li>
-                        <li><a href="#">Pages</a>
+                        <li><a href="{% url 'blog' %}">{% trans "Blog" %}</a></li>
+                        <li><a href="{% url 'contact' %}">{% trans "Contact" %}</a></li>
+                        <li><a href="#">{% trans "Pages" %}</a>
                             <ul class="dropdown">
-                                <li><a href="{% url 'blog-details' %}">Blog Details</a></li>
-                                <li><a href="{% url 'shopping-cart' %}">Shopping Cart</a></li>
-                                <li><a href="{% url 'checkout' %}">Checkout</a></li>
-                                <li><a href="{% url 'faq' %}">Faq</a></li>
-                                <li><a href="{% url 'register' %}">Register</a></li>
-                                <li><a href="{% url 'login' %}">Login</a></li>
+                                <li><a href="{% url 'blog-details' %}">{% trans "Blog Details" %}</a></li>
+                                <li><a href="{% url 'shopping-cart' %}">{% trans "Shopping Cart" %}</a></li>
+                                <li><a href="{% url 'checkout' %}">{% trans "Checkout" %}</a></li>
+                                <li><a href="{% url 'faq' %}">{% trans "Faq" %}</a></li>
+                                <li><a href="{% url 'register' %}">{% trans "Register" %}</a></li>
+                                <li><a href="{% url 'login' %}">{% trans "Login" %}</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -202,15 +207,14 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5">
-                            <span>Bag,kids</span>
-                            <h1>Black friday</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore</p>
-                            <a href="{% url 'shop' %}" class="primary-btn">Shop Now</a>
+                            <span>{% trans "Bag,kids" %}</span>
+                            <h1>{% trans "Black friday" %}</h1>
+                            <p>{% trans "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore" %}</p>
+                            <a href="{% url 'shop' %}" class="primary-btn">{% trans "Shop Now" %}</a>
                         </div>
                     </div>
                     <div class="off-card">
-                        <h2>Sale <span>50%</span></h2>
+                        <h2>{% trans "Sale" %} <span>50%</span></h2>
                     </div>
                 </div>
             </div>
@@ -218,15 +222,14 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5">
-                            <span>Bag,kids</span>
-                            <h1>Black friday</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore</p>
-                            <a href="{% url 'shop' %}" class="primary-btn">Shop Now</a>
+                            <span>{% trans "Bag,kids" %}</span>
+                            <h1>{% trans "Black friday" %}</h1>
+                            <p>{% trans "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore" %}</p>
+                            <a href="{% url 'shop' %}" class="primary-btn">{% trans "Shop Now" %}</a>
                         </div>
                     </div>
                     <div class="off-card">
-                        <h2>Sale <span>50%</span></h2>
+                        <h2>{% trans "Sale" %} <span>50%</span></h2>
                     </div>
                 </div>
             </div>
@@ -239,7 +242,7 @@
                     <div class="single-banner">
                         <img src="{% static 'img/banner-1.jpg' %}" alt="">
                         <div class="inner-text">
-                            <h4>Men’s</h4>
+                            <h4>{% trans "Men’s" %}</h4>
                         </div>
                     </div>
                 </div>
@@ -247,7 +250,7 @@
                     <div class="single-banner">
                         <img src="{% static 'img/banner-2.jpg' %}" alt="">
                         <div class="inner-text">
-                            <h4>Women’s</h4>
+                            <h4>{% trans "Women’s" %}</h4>
                         </div>
                     </div>
                 </div>
@@ -255,7 +258,7 @@
                     <div class="single-banner">
                         <img src="{% static 'img/banner-3.jpg' %}" alt="">
                         <div class="inner-text">
-                            <h4>Kid’s</h4>
+                            <h4>{% trans "Kid’s" %}</h4>
                         </div>
                     </div>
                 </div>
@@ -267,37 +270,37 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="product-large set-bg" data-setbg="{% static 'img/products/women-large.jpg' %}">
-                        <h2>Women’s</h2>
-                        <a href="{% url 'shop' %}">Discover More</a>
+                        <h2>{% trans "Women’s" %}</h2>
+                        <a href="{% url 'shop' %}">{% trans "Discover More" %}</a>
                     </div>
                 </div>
                 <div class="col-lg-8 offset-lg-1">
                     <div class="filter-control">
                         <ul>
-                            <li class="active">Clothings</li>
-                            <li>HandBag</li>
-                            <li>Shoes</li>
-                            <li>Accessories</li>
+                            <li class="active">{% trans "Clothings" %}</li>
+                            <li>{% trans "HandBag" %}</li>
+                            <li>{% trans "Shoes" %}</li>
+                            <li>{% trans "Accessories" %}</li>
                         </ul>
                     </div>
                     <div class="product-slider owl-carousel">
                         <div class="product-item">
                             <div class="pi-pic">
                                 <img src="{% static 'img/products/women-1.jpg' %}" alt="">
-                                <div class="sale">Sale</div>
+                                <div class="sale">{% trans "Sale" %}</div>
                                 <div class="icon">
                                     <i class="icon_heart_alt"></i>
                                 </div>
                                 <ul>
                                     <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                    <li class="quick-view"><a href="#">{% trans "+ Quick View" %}</a></li>
                                     <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                 </ul>
                             </div>
                             <div class="pi-text">
-                                <div class="catagory-name">Coat</div>
+                                <div class="catagory-name">{% trans "Coat" %}</div>
                                 <a href="#">
-                                    <h5>Pure Pineapple</h5>
+                                    <h5>{% trans "Pure Pineapple" %}</h5>
                                 </a>
                                 <div class="product-price">
                                     $14.00
@@ -313,14 +316,14 @@
                                 </div>
                                 <ul>
                                     <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                    <li class="quick-view"><a href="#">{% trans "+ Quick View" %}</a></li>
                                     <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                 </ul>
                             </div>
                             <div class="pi-text">
-                                <div class="catagory-name">Shoes</div>
+                                <div class="catagory-name">{% trans "Shoes" %}</div>
                                 <a href="#">
-                                    <h5>Guangzhou sweater</h5>
+                                    <h5>{% trans "Guangzhou sweater" %}</h5>
                                 </a>
                                 <div class="product-price">
                                     $13.00
@@ -335,14 +338,14 @@
                                 </div>
                                 <ul>
                                     <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                    <li class="quick-view"><a href="#">{% trans "+ Quick View" %}</a></li>
                                     <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                 </ul>
                             </div>
                             <div class="pi-text">
-                                <div class="catagory-name">Towel</div>
+                                <div class="catagory-name">{% trans "Towel" %}</div>
                                 <a href="#">
-                                    <h5>Pure Pineapple</h5>
+                                    <h5>{% trans "Pure Pineapple" %}</h5>
                                 </a>
                                 <div class="product-price">
                                     $34.00
@@ -357,14 +360,14 @@
                                 </div>
                                 <ul>
                                     <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                    <li class="quick-view"><a href="#">{% trans "+ Quick View" %}</a></li>
                                     <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                 </ul>
                             </div>
                             <div class="pi-text">
-                                <div class="catagory-name">Towel</div>
+                                <div class="catagory-name">{% trans "Towel" %}</div>
                                 <a href="#">
-                                    <h5>Converse Shoes</h5>
+                                    <h5>{% trans "Converse Shoes" %}</h5>
                                 </a>
                                 <div class="product-price">
                                     $34.00
@@ -380,33 +383,32 @@
         <div class="container">
             <div class="col-lg-6 text-center">
                 <div class="section-title">
-                    <h2>Deal Of The Week</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed<br /> do ipsum dolor sit amet,
-                        consectetur adipisicing elit </p>
+                    <h2>{% trans "Deal Of The Week" %}</h2>
+                    <p>{% trans "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed" %}<br /> {% trans "do ipsum dolor sit amet, consectetur adipisicing elit" %} </p>
                     <div class="product-price">
                         $35.00
-                        <span>/ HanBag</span>
+                        <span>{% trans "/ HanBag" %}</span>
                     </div>
                 </div>
                 <div class="countdown-timer" id="countdown">
                     <div class="cd-item">
                         <span>56</span>
-                        <p>Days</p>
+                        <p>{% trans "Days" %}</p>
                     </div>
                     <div class="cd-item">
                         <span>12</span>
-                        <p>Hrs</p>
+                        <p>{% trans "Hrs" %}</p>
                     </div>
                     <div class="cd-item">
                         <span>40</span>
-                        <p>Mins</p>
+                        <p>{% trans "Mins" %}</p>
                     </div>
                     <div class="cd-item">
                         <span>52</span>
-                        <p>Secs</p>
+                        <p>{% trans "Secs" %}</p>
                     </div>
                 </div>
-                <a href="{% url 'shop' %}" class="primary-btn">Shop Now</a>
+                <a href="{% url 'shop' %}" class="primary-btn">{% trans "Shop Now" %}</a>
             </div>
         </div>
     </section>
@@ -416,30 +418,30 @@
                 <div class="col-lg-8">
                     <div class="filter-control">
                         <ul>
-                            <li class="active">Clothings</li>
-                            <li>HandBag</li>
-                            <li>Shoes</li>
-                            <li>Accessories</li>
+                            <li class="active">{% trans "Clothings" %}</li>
+                            <li>{% trans "HandBag" %}</li>
+                            <li>{% trans "Shoes" %}</li>
+                            <li>{% trans "Accessories" %}</li>
                         </ul>
                     </div>
                     <div class="product-slider owl-carousel">
                         <div class="product-item">
                             <div class="pi-pic">
                                 <img src="{% static 'img/products/man-1.jpg' %}" alt="">
-                                <div class="sale">Sale</div>
+                                <div class="sale">{% trans "Sale" %}</div>
                                 <div class="icon">
                                     <i class="icon_heart_alt"></i>
                                 </div>
                                 <ul>
                                     <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                    <li class="quick-view"><a href="#">{% trans "+ Quick View" %}</a></li>
                                     <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                 </ul>
                             </div>
                             <div class="pi-text">
-                                <div class="catagory-name">Coat</div>
+                                <div class="catagory-name">{% trans "Coat" %}</div>
                                 <a href="#">
-                                    <h5>Pure Pineapple</h5>
+                                    <h5>{% trans "Pure Pineapple" %}</h5>
                                 </a>
                                 <div class="product-price">
                                     $14.00
@@ -455,14 +457,14 @@
                                 </div>
                                 <ul>
                                     <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                    <li class="quick-view"><a href="#">{% trans "+ Quick View" %}</a></li>
                                     <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                 </ul>
                             </div>
                             <div class="pi-text">
-                                <div class="catagory-name">Shoes</div>
+                                <div class="catagory-name">{% trans "Shoes" %}</div>
                                 <a href="#">
-                                    <h5>Guangzhou sweater</h5>
+                                    <h5>{% trans "Guangzhou sweater" %}</h5>
                                 </a>
                                 <div class="product-price">
                                     $13.00
@@ -477,14 +479,14 @@
                                 </div>
                                 <ul>
                                     <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                    <li class="quick-view"><a href="#">{% trans "+ Quick View" %}</a></li>
                                     <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                 </ul>
                             </div>
                             <div class="pi-text">
-                                <div class="catagory-name">Towel</div>
+                                <div class="catagory-name">{% trans "Towel" %}</div>
                                 <a href="#">
-                                    <h5>Pure Pineapple</h5>
+                                    <h5>{% trans "Pure Pineapple" %}</h5>
                                 </a>
                                 <div class="product-price">
                                     $34.00
@@ -499,14 +501,14 @@
                                 </div>
                                 <ul>
                                     <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                    <li class="quick-view"><a href="#">{% trans "+ Quick View" %}</a></li>
                                     <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                 </ul>
                             </div>
                             <div class="pi-text">
-                                <div class="catagory-name">Towel</div>
+                                <div class="catagory-name">{% trans "Towel" %}</div>
                                 <a href="#">
-                                    <h5>Converse Shoes</h5>
+                                    <h5>{% trans "Converse Shoes" %}</h5>
                                 </a>
                                 <div class="product-price">
                                     $34.00
@@ -517,8 +519,8 @@
                 </div>
                 <div class="col-lg-3 offset-lg-1">
                     <div class="product-large set-bg m-large" data-setbg="{% static 'img/products/man-large.jpg' %}">
-                        <h2>Men’s</h2>
-                        <a href="{% url 'shop' %}">Discover More</a>
+                        <h2>{% trans "Men’s" %}</h2>
+                        <a href="{% url 'shop' %}">{% trans "Discover More" %}</a>
                     </div>
                 </div>
             </div>
@@ -567,7 +569,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>From The Blog</h2>
+                        <h2>{% trans "From The Blog" %}</h2>
                     </div>
                 </div>
             </div>
@@ -587,9 +589,9 @@
                                 </div>
                             </div>
                             <a href="{% url 'blog-details' %}">
-                                <h4>The Best Street Style From London Fashion Week</h4>
+                                <h4>{% trans "The Best Street Style From London Fashion Week" %}</h4>
                             </a>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
+                            <p>{% trans "Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat" %} </p>
                         </div>
                     </div>
                 </div>
@@ -608,9 +610,9 @@
                                 </div>
                             </div>
                             <a href="{% url 'blog-details' %}">
-                                <h4>Vogue's Ultimate Guide To Autumn/Winter 2019 Shoes</h4>
+                                <h4>{% trans "Vogue's Ultimate Guide To Autumn/Winter 2019 Shoes" %}</h4>
                             </a>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
+                            <p>{% trans "Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat" %} </p>
                         </div>
                     </div>
                 </div>
@@ -629,9 +631,9 @@
                                 </div>
                             </div>
                             <a href="{% url 'blog-details' %}">
-                                <h4>How To Brighten Your Wardrobe With A Dash Of Lime</h4>
+                                <h4>{% trans "How To Brighten Your Wardrobe With A Dash Of Lime" %}</h4>
                             </a>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
+                            <p>{% trans "Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat" %} </p>
                         </div>
                     </div>
                 </div>
@@ -644,8 +646,8 @@
                                 <img src="{% static 'img/icon-1.png' %}" alt="">
                             </div>
                             <div class="sb-text">
-                                <h6>Free Shipping</h6>
-                                <p>For all order over 99$</p>
+                                <h6>{% trans "Free Shipping" %}</h6>
+                                <p>{% trans "For all order over 99$" %}</p>
                             </div>
                         </div>
                     </div>
@@ -655,8 +657,8 @@
                                 <img src="{% static 'img/icon-2.png' %}" alt="">
                             </div>
                             <div class="sb-text">
-                                <h6>Delivery On Time</h6>
-                                <p>If good have prolems</p>
+                                <h6>{% trans "Delivery On Time" %}</h6>
+                                <p>{% trans "If good have prolems" %}</p>
                             </div>
                         </div>
                     </div>
@@ -666,8 +668,8 @@
                                 <img src="{% static 'img/icon-1.png' %}" alt="">
                             </div>
                             <div class="sb-text">
-                                <h6>Secure Payment</h6>
-                                <p>100% secure payment</p>
+                                <h6>{% trans "Secure Payment" %}</h6>
+                                <p>{% trans "100% secure payment" %}</p>
                             </div>
                         </div>
                     </div>
@@ -715,9 +717,9 @@
                             <a href="#"><img src="{% static 'img/footer-logo.png' %}" alt=""></a>
                         </div>
                         <ul>
-                            <li>Address: 60-49 Road 11378 New York</li>
-                            <li>Phone: +65 11.188.888</li>
-                            <li>Email: hello.colorlib@gmail.com</li>
+                            <li>{% trans "Address:" %} 60-49 Road 11378 New York</li>
+                            <li>{% trans "Phone:" %} +65 11.188.888</li>
+                            <li>{% trans "Email:" %} hello.colorlib@gmail.com</li>
                         </ul>
                         <div class="footer-social">
                             <a href="#"><i class="fa fa-facebook"></i></a>
@@ -729,33 +731,33 @@
                 </div>
                 <div class="col-lg-2 offset-lg-1">
                     <div class="footer-widget">
-                        <h5>Information</h5>
+                        <h5>{% trans "Information" %}</h5>
                         <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="{% url 'checkout' %}">Checkout</a></li>
-                            <li><a href="{% url 'contact' %}">Contact</a></li>
-                            <li><a href="#">Serivius</a></li>
+                            <li><a href="#">{% trans "About Us" %}</a></li>
+                            <li><a href="{% url 'checkout' %}">{% trans "Checkout" %}</a></li>
+                            <li><a href="{% url 'contact' %}">{% trans "Contact" %}</a></li>
+                            <li><a href="#">{% trans "Serivius" %}</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-2">
                     <div class="footer-widget">
-                        <h5>My Account</h5>
+                        <h5>{% trans "My Account" %}</h5>
                         <ul>
-                            <li><a href="#">My Account</a></li>
-                            <li><a href="{% url 'contact' %}">Contact</a></li>
-                            <li><a href="{% url 'shopping-cart' %}">Shopping Cart</a></li>
-                            <li><a href="{% url 'shop' %}">Shop</a></li>
+                            <li><a href="#">{% trans "My Account" %}</a></li>
+                            <li><a href="{% url 'contact' %}">{% trans "Contact" %}</a></li>
+                            <li><a href="{% url 'shopping-cart' %}">{% trans "Shopping Cart" %}</a></li>
+                            <li><a href="{% url 'shop' %}">{% trans "Shop" %}</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="newslatter-item">
-                        <h5>Join Our Newsletter Now</h5>
-                        <p>Get E-mail updates about our latest shop and special offers.</p>
+                        <h5>{% trans "Join Our Newsletter Now" %}</h5>
+                        <p>{% trans "Get E-mail updates about our latest shop and special offers." %}</p>
                         <form action="#" class="subscribe-form">
-                            <input type="text" placeholder="Enter Your Mail">
-                            <button type="button">Subscribe</button>
+                            <input type="text" placeholder="{% trans "Enter Your Mail" %}">
+                            <button type="button">{% trans "Subscribe" %}</button>
                         </form>
                     </div>
                 </div>
@@ -766,9 +768,8 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="copyright-text">
-                            Copyright &copy;
-                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This
-                            template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a
+                            {% trans "Copyright" %} &copy;
+                            <script>document.write(new Date().getFullYear());</script> {% trans "All rights reserved | This template is made with" %} <i class="fa fa-heart-o" aria-hidden="true"></i> {% trans "by" %} <a
                                 href="https://colorlib.com" target="_blank">Colorlib</a>
                         </div>
                         <div class="payment-pic">

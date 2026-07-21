@@ -1,4 +1,4 @@
-{% load static %}
+{% load i18n static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,15 +46,20 @@
                     </div>
                 </div>
                 <div class="ht-right">
-                    <a href="#" class="login-panel"><i class="fa fa-user"></i>Login</a>
+                    <a href="#" class="login-panel"><i class="fa fa-user"></i>{% trans "Login" %}</a>
                     <div class="lan-selector">
-                        <label for="language" class="sr-only">Select language</label>
-                        <select class="language_drop" name="language" id="language">
-                            <option value="en" data-image="{% static 'img/flag-1.jpg' %}" data-imagecss="flag en"
-                                data-title="English">English</option>
-                            <option value="de" data-image="{% static 'img/flag-2.jpg' %}" data-imagecss="flag de"
-                                data-title="German">German</option>
-                        </select>
+                        {% get_current_language as LANGUAGE_CODE %}
+                        <form action="{% url 'set_language' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="next" value="{{ request.path }}">
+                            <label for="language" class="sr-only">Select language</label>
+                            <select class="language_drop" name="language" id="language" onchange="this.form.submit()">
+                                <option value="en" data-image="{% static 'img/flag-1.jpg' %}" data-imagecss="flag en"
+                                    data-title="English" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+                                <option value="de" data-image="{% static 'img/flag-2.jpg' %}" data-imagecss="flag de"
+                                    data-title="German" {% if LANGUAGE_CODE == 'de' %}selected{% endif %}>German</option>
+                            </select>
+                        </form>
                     </div>
                     <div class="top-social">
                         <a href="#"><i class="ti-facebook"></i></a>
@@ -77,9 +82,9 @@
                     </div>
                     <div class="col-lg-7 col-md-7">
                         <div class="advanced-search">
-                            <button type="button" class="category-btn">All Categories</button>
+                            <button type="button" class="category-btn">{% trans "All Categories" %}</button>
                             <form action="#" class="input-group">
-                                <input type="text" placeholder="What do you need?">
+                                <input type="text" placeholder="{% trans 'What do you need?' %}">
                                 <button type="button"><i class="ti-search"></i></button>
                             </form>
                         </div>
@@ -104,7 +109,7 @@
                                                     <td class="si-text">
                                                         <div class="product-selected">
                                                             <p>$60.00 x 1</p>
-                                                            <h6>Kabino Bedside Table</h6>
+                                                            <h6>{% trans "Kabino Bedside Table" %}</h6>
                                                         </div>
                                                     </td>
                                                     <td class="si-close">
@@ -116,7 +121,7 @@
                                                     <td class="si-text">
                                                         <div class="product-selected">
                                                             <p>$60.00 x 1</p>
-                                                            <h6>Kabino Bedside Table</h6>
+                                                            <h6>{% trans "Kabino Bedside Table" %}</h6>
                                                         </div>
                                                     </td>
                                                     <td class="si-close">
@@ -127,12 +132,12 @@
                                         </table>
                                     </div>
                                     <div class="select-total">
-                                        <span>total:</span>
+                                        <span>{% trans "total:" %}</span>
                                         <h5>$120.00</h5>
                                     </div>
                                     <div class="select-button">
-                                        <a href="#" class="primary-btn view-card">VIEW CARD</a>
-                                        <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
+                                        <a href="#" class="primary-btn view-card">{% trans "VIEW CARD" %}</a>
+                                        <a href="#" class="primary-btn checkout-btn">{% trans "CHECK OUT" %}</a>
                                     </div>
                                 </div>
                             </li>
@@ -147,40 +152,40 @@
                 <div class="nav-depart">
                     <div class="depart-btn">
                         <i class="ti-menu"></i>
-                        <span>All departments</span>
+                        <span>{% trans "All departments" %}</span>
                         <ul class="depart-hover">
-                            <li class="active"><a href="#">Women’s Clothing</a></li>
-                            <li><a href="#">Men’s Clothing</a></li>
-                            <li><a href="#">Underwear</a></li>
-                            <li><a href="#">Kid's Clothing</a></li>
-                            <li><a href="#">Brand Fashion</a></li>
-                            <li><a href="#">Accessories/Shoes</a></li>
-                            <li><a href="#">Luxury Brands</a></li>
-                            <li><a href="#">Brand Outdoor Apparel</a></li>
+                            <li class="active"><a href="#">{% trans "Women’s Clothing" %}</a></li>
+                            <li><a href="#">{% trans "Men’s Clothing" %}</a></li>
+                            <li><a href="#">{% trans "Underwear" %}</a></li>
+                            <li><a href="#">{% trans "Kid's Clothing" %}</a></li>
+                            <li><a href="#">{% trans "Brand Fashion" %}</a></li>
+                            <li><a href="#">{% trans "Accessories/Shoes" %}</a></li>
+                            <li><a href="#">{% trans "Luxury Brands" %}</a></li>
+                            <li><a href="#">{% trans "Brand Outdoor Apparel" %}</a></li>
                         </ul>
                     </div>
                 </div>
                 <nav class="nav-menu mobile-menu">
                     <ul>
-                        <li><a href="./index.html">Home</a></li>
-                        <li><a href="./shop.html">Shop</a></li>
-                        <li><a href="#">Collection</a>
+                        <li><a href="./index.html">{% trans "Home" %}</a></li>
+                        <li><a href="./shop.html">{% trans "Shop" %}</a></li>
+                        <li><a href="#">{% trans "Collection" %}</a>
                             <ul class="dropdown">
-                                <li><a href="#">Men's</a></li>
-                                <li><a href="#">Women's</a></li>
-                                <li><a href="#">Kid's</a></li>
+                                <li><a href="#">{% trans "Men's" %}</a></li>
+                                <li><a href="#">{% trans "Women's" %}</a></li>
+                                <li><a href="#">{% trans "Kid's" %}</a></li>
                             </ul>
                         </li>
-                        <li><a href="./blog.html">Blog</a></li>
-                        <li><a href="./contact.html">Contact</a></li>
-                        <li><a href="#">Pages</a>
+                        <li><a href="./blog.html">{% trans "Blog" %}</a></li>
+                        <li><a href="./contact.html">{% trans "Contact" %}</a></li>
+                        <li><a href="#">{% trans "Pages" %}</a>
                             <ul class="dropdown">
-                                <li><a href="./blog-details.html">Blog Details</a></li>
-                                <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                                <li><a href="./check-out.html">Checkout</a></li>
-                                <li><a href="./faq.html">Faq</a></li>
-                                <li><a href="./register.html">Register</a></li>
-                                <li><a href="./login.html">Login</a></li>
+                                <li><a href="./blog-details.html">{% trans "Blog Details" %}</a></li>
+                                <li><a href="./shopping-cart.html">{% trans "Shopping Cart" %}</a></li>
+                                <li><a href="./check-out.html">{% trans "Checkout" %}</a></li>
+                                <li><a href="./faq.html">{% trans "Faq" %}</a></li>
+                                <li><a href="./register.html">{% trans "Register" %}</a></li>
+                                <li><a href="./login.html">{% trans "Login" %}</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -197,9 +202,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text product-more">
-                        <a href="./home.html"><i class="fa fa-home"></i> Home</a>
-                        <a href="./shop.html">Shop</a>
-                        <span>Detail</span>
+                        <a href="./home.html"><i class="fa fa-home"></i> {% trans "Home" %}</a>
+                        <a href="./shop.html">{% trans "Shop" %}</a>
+                        <span>{% trans "Detail" %}</span>
                     </div>
                 </div>
             </div>
@@ -213,15 +218,15 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="filter-widget">
-                        <h4 class="fw-title">Categories</h4>
+                        <h4 class="fw-title">{% trans "Categories" %}</h4>
                         <ul class="filter-catagories">
-                            <li><a href="#">Men</a></li>
-                            <li><a href="#">Women</a></li>
-                            <li><a href="#">Kids</a></li>
+                            <li><a href="#">{% trans "Men" %}</a></li>
+                            <li><a href="#">{% trans "Women" %}</a></li>
+                            <li><a href="#">{% trans "Kids" %}</a></li>
                         </ul>
                     </div>
                     <div class="filter-widget">
-                        <h4 class="fw-title">Brand</h4>
+                        <h4 class="fw-title">{% trans "Brand" %}</h4>
                         <div class="fw-brand-check">
                             <div class="bc-item">
                                 <label for="bc-calvin">
@@ -254,7 +259,7 @@
                         </div>
                     </div>
                     <div class="filter-widget">
-                        <h4 class="fw-title">Price</h4>
+                        <h4 class="fw-title">{% trans "Price" %}</h4>
                         <div class="filter-range-wrap">
                             <div class="range-slider">
                                 <div class="price-input">

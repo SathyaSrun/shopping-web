@@ -1,4 +1,4 @@
-{% load static %}
+{% load i18n static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,13 +48,18 @@
                 <div class="ht-right">
                     <a href="#" class="login-panel"><i class="fa fa-user"></i>Login</a>
                     <div class="lan-selector">
-                        <label for="language" class="sr-only">Select language</label>
-                        <select class="language_drop" name="language" id="language">
-                            <option value="en" data-image="{% static 'img/flag-1.jpg' %}" data-imagecss="flag en"
-                                data-title="English">English</option>
-                            <option value="de" data-image="{% static 'img/flag-2.jpg' %}" data-imagecss="flag de"
-                                data-title="German">German</option>
-                        </select>
+                        {% get_current_language as LANGUAGE_CODE %}
+                        <form action="{% url 'set_language' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="next" value="{{ request.path }}">
+                            <label for="language" class="sr-only">Select language</label>
+                            <select class="language_drop" name="language" id="language" onchange="this.form.submit()">
+                                <option value="en" data-image="{% static 'img/flag-1.jpg' %}" data-imagecss="flag en"
+                                    data-title="English" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+                                <option value="de" data-image="{% static 'img/flag-2.jpg' %}" data-imagecss="flag de"
+                                    data-title="German" {% if LANGUAGE_CODE == 'de' %}selected{% endif %}>German</option>
+                            </select>
+                        </form>
                     </div>
                     <div class="top-social">
                         <a href="#"><i class="ti-facebook"></i></a>
