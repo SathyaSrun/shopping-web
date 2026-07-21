@@ -21,7 +21,8 @@
     <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
-
+    
+    
 </head>
 
 <body>
@@ -48,15 +49,10 @@
                     <div class="ht-right">
                         <a href="{% url 'login' %}" class="login-panel"><i class="fa fa-user"></i>Login</a>
                         <div class="lan-selector">
-                            <label for="countries">Language</label>
-
                             <select class="language_drop" name="countries" id="countries" style="width:300px;">
-                                <option value="yt" data-image="{% static 'img/flag-1.jpg' %}" data-imagecss="flag yt"
-                                    data-title="English">
-                                    English
-                                </option>
-
-                                <option value="yu" data-image="{% static 'img/flag-2.jpg' %}" data-imagecss="flag yu"
+                                <option value='yt' data-image="{% static 'img/flag-1.jpg' %}" data-imagecss="flag yt"
+                                    data-title="English">English</option>
+                                <option value='yu' data-image="{% static 'img/flag-2.jpg' %}" data-imagecss="flag yu"
                                     data-title="German">
                                     German
                                 </option>
@@ -85,14 +81,8 @@
                             <div class="advanced-search">
                                 <button type="button" class="category-btn">All Categories</button>
                                 <div class="input-group">
-                                    <label for="search-input" class="visually-hidden">Search</label>
-
-                                    <input type="text" id="search-input" name="search" placeholder="What do you need?"
-                                        aria-label="Search">
-
-                                    <button type="submit" aria-label="Search">
-                                        <i class="ti-search"></i>
-                                    </button>
+                                    <input type="text" placeholder="What do you need?">
+                                    <button type="button"><i class="ti-search"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -112,54 +102,33 @@
                                     <div class="cart-hover">
                                         <div class="select-items">
                                             <table>
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">Product Image</th>
-                                                        <th scope="col">Product Details</th>
-                                                        <th scope="col">Remove</th>
-                                                    </tr>
-                                                </thead>
-
                                                 <tbody>
                                                     <tr>
-                                                        <td class="si-pic">
-                                                            <img src="{% static 'img/select-product-1.jpg' %}"
-                                                                alt="Kabino Bedside Table">
+                                                        <td class="si-pic"><img
+                                                                src="{% static 'img/select-product-1.jpg' %}" alt="">
                                                         </td>
-
                                                         <td class="si-text">
                                                             <div class="product-selected">
-                                                                <p>$60.00 × 1</p>
+                                                                <p>$60.00 x 1</p>
                                                                 <h6>Kabino Bedside Table</h6>
                                                             </div>
                                                         </td>
-
                                                         <td class="si-close">
-                                                            <button type="button"
-                                                                aria-label="Remove Kabino Bedside Table">
-                                                                <i class="ti-close"></i>
-                                                            </button>
+                                                            <i class="ti-close"></i>
                                                         </td>
                                                     </tr>
-
                                                     <tr>
-                                                        <td class="si-pic">
-                                                            <img src="{% static 'img/select-product-2.jpg' %}"
-                                                                alt="Kabino Bedside Table">
+                                                        <td class="si-pic"><img
+                                                                src="{% static 'img/select-product-2.jpg' %}" alt="">
                                                         </td>
-
                                                         <td class="si-text">
                                                             <div class="product-selected">
-                                                                <p>$60.00 × 1</p>
+                                                                <p>$60.00 x 1</p>
                                                                 <h6>Kabino Bedside Table</h6>
                                                             </div>
                                                         </td>
-
                                                         <td class="si-close">
-                                                            <button type="button"
-                                                                aria-label="Remove Kabino Bedside Table">
-                                                                <i class="ti-close"></i>
-                                                            </button>
+                                                            <i class="ti-close"></i>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -787,17 +756,9 @@
                     <div class="newslatter-item">
                         <h5>Join Our Newsletter Now</h5>
                         <p>Get E-mail updates about our latest shop and special offers.</p>
-                        <form action="#" class="subscribe-form" method="post">
-                            <label for="subscribe-email" class="visually-hidden">
-                                Email Address
-                            </label>
-
-                            <input type="email" id="subscribe-email" name="email" placeholder="Enter Your Email"
-                                aria-label="Email Address" required>
-
-                            <button type="submit">
-                                Subscribe
-                            </button>
+                        <form action="#" class="subscribe-form">
+                            <input type="text" placeholder="Enter Your Mail">
+                            <button type="button">Subscribe</button>
                         </form>
                     </div>
                 </div>
