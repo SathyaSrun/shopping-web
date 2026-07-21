@@ -30,7 +30,6 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -97,19 +96,3 @@ STORAGES = {
 }
 
 
-USE_I18N = True
-
-LANGUAGE_CODE = 'en'
-
-LANGUAGES = [
-    ('en', 'English'),
-    ('km', 'Khmer'),
-    ('de', 'German'),
-    ('fr', 'French'),
-    ('ja', 'Japanese'),
-    ('zh-hans', 'Chinese'),
-]
-
-LOCALE_PATHS = [
-    BASE_DIR / 'locale',
-]

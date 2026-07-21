@@ -51,22 +51,14 @@
                 <div class="ht-right">
                     <a href="{% url 'login' %}" class="login-panel"><i class="fa fa-user"></i>Login</a>
                     <div class="lan-selector">
-                        {% load i18n %}
-
-                        <form action="{% url 'set_language' %}" method="post">
-                            {% csrf_token %}
-
-                            <select name="language" onchange="this.form.submit()">
-                                {% get_current_language as LANGUAGE_CODE %}
-                                {% get_available_languages as LANGUAGES %}
-
-                                {% for lang in LANGUAGES %}
-                                <option value="{{ lang.0 }}" {% if lang.0==LANGUAGE_CODE %}selected{% endif %}>
-                                    {{ lang.1 }}
-                                </option>
-                                {% endfor %}
-                            </select>
-                        </form>
+                        <select class="language_drop" name="countries" id="countries" style="width:300px;">
+                            <option value='yt' data-image="{% static 'img/flag-1.jpg' %}" data-imagecss="flag yt"
+                                data-title="English">English</option>
+                            <option value='yu' data-image="{% static 'img/flag-2.jpg' %}" data-imagecss="flag yu"
+                                data-title="German">
+                                German
+                            </option>
+                        </select>
                     </div>
                     <div class="top-social">
                         <a href="#"><i class="ti-facebook"></i></a>
